@@ -6,3 +6,10 @@ html {
     box-sizing: border-box;
 }
 
+body {
+    width: 90%;
+    /*border: 1px solid red;*/
+    margin: 0 auto;
+}
+
+
