@@ -27,8 +27,11 @@ h1, header {
 
 #game-field {
     width: 100%;
+    /*aspect-ratio: 4/1; to maybe add for responsive design*/
     height: 90%;
     border: 5px solid gray;
     margin-top: 20px;
-    
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 2px);
+    grid-template-rows: repeat(auto-fill, 2px);
 }
