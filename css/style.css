@@ -37,7 +37,11 @@ h1, header {
 }
 
 #snake {
-    background-color: green;
+    background-color: red;
     grid-row: 13 / span 3;
     grid-column: span 7 / 17;
+}
+
+#food {
+    background-color: green;
 }
