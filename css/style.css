@@ -26,12 +26,18 @@ h1, header {
 }
 
 #game-field {
-    width: 100%;
+    width: 90vw;/*change to vw and take away the sttings of body html...*/
     /*aspect-ratio: 4/1; to maybe add for responsive design*/
     height: 90%;
     border: 5px solid gray;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 2px);
-    grid-template-rows: repeat(auto-fill, 2px);
+    grid-template-columns: repeat(auto-fill, 10px);
+    grid-template-rows: repeat(auto-fill, 10px);
+}
+
+#snake {
+    background-color: green;
+    grid-row: 13 / span 3;
+    grid-column: span 7 / 17;
 }
