@@ -38,7 +38,7 @@ h1, header {
 
 #snake {
     background-color: red;
-    grid-row: 13 / span 3;
+    grid-row: 13 / span 3;/*will have to change starting position for different screens*/
     grid-column: span 7 / 17;
 }
 

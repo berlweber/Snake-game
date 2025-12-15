@@ -5,11 +5,12 @@
 
 
 /*----- Cached Element References  -----*/
-const gameFieldEl = document.querySelector('#game-field');
 const startStpBtn = document.querySelector('#strt-stp');
 const resetBtn = document.querySelector('#reset');
+const gameFieldEl = document.querySelector('#game-field');
+const snakeEl = document.querySelector('#snake');
 const messageEl = document.querySelector('#message');
-console.log(gameFieldEl);
+console.log(snakeEl);
 
 /*-------------- Functions -------------*/
 
