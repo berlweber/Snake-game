@@ -1,5 +1,5 @@
 /*-------------- Constants -------------*/
-
+const highScore = [];//for level-up
 
 /*---------- Variables (state) ---------*/
 let playing;
