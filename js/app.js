@@ -2,7 +2,9 @@
 
 
 /*---------- Variables (state) ---------*/
-
+let playing;
+let score;
+let timerId;
 
 /*----- Cached Element References  -----*/
 const startStpBtn = document.querySelector('#strt-stp');
