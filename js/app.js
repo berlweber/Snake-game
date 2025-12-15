@@ -5,6 +5,7 @@
 
 
 /*----- Cached Element References  -----*/
+const startStpBtn = document.querySelector('#strt-stp');
 
 
 /*-------------- Functions -------------*/
