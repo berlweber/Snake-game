@@ -32,7 +32,7 @@ h1, header {
     border: 5px solid gray;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 10px);
+    /*grid-template-columns: repeat(auto-fill, 10px);*/
     grid-template-rows: repeat(auto-fill, 10px);
 }
 
@@ -44,4 +44,6 @@ h1, header {
 
 #food {
     background-color: green;
+    grid-column: 31 / span 3;
+    grid-row: 7 / span 3;
 }
