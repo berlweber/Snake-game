@@ -81,14 +81,15 @@ const adjustToWindow = () =>{
 
 const startStopHandler = () => {
 	playing = playing ? false : true;
-	console.log(playing);
+	playing ? startGame() : pauseGame();
 }
 const startGame = () => {
 	intervalId ??= setInterval(activeGame, 200);
 }
 
 const activeGame = () => {
-	direction = 'right';
+	console.log('active game!');
+	/*direction = 'right';
 	if (direction === 'right') {
 
 	} else if (direction === 'up') {
@@ -97,7 +98,7 @@ const activeGame = () => {
 		
 	} else {
 
-	}
+	}*/
 }
 
 const pauseGame = () => {
