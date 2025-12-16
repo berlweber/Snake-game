@@ -95,6 +95,11 @@ const activeGame = () => {
 
 	}
 }
+
+const pauseGame = () => {
+	clearInterval(intervalId);
+	intervalId = null;
+}
 /*----------- Event Listeners ----------*/
 
 window.addEventListener("resize", adjustToWindow);
