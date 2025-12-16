@@ -55,6 +55,7 @@ const setSnake = () => {
 	snake.push(0, 1, 2);
 	snake.forEach((element, i) => {
 		gameField.cells[i + (gameField.columnsAmount * 10) + 10].classList.add('snake');
+		snake[i] = i + (gameField.columnsAmount * 10) + 10;
 
 	});
 }
@@ -74,7 +75,7 @@ const init = () => {
 };
 
 init();
-
+console.log(snake);
 const adjustToWindow = () =>{
     setGameField();
 };
@@ -88,17 +89,21 @@ const startGame = () => {
 }
 
 const activeGame = () => {
-	console.log('active game!');
-	/*direction = 'right';
+	direction = 'right';
 	if (direction === 'right') {
-
+		gameField.cells[snake[snake.length - 1] + 1].classList.add('snake');
+		gameField.cells[snake[0]].classList.remove('snake');
+		snake.forEach((el, i) => {
+		snake[i] += 1;
+	});
+	console.log(snake);
 	} else if (direction === 'up') {
 		
 	} else if (direction === 'left') {
 		
 	} else {
 
-	}*/
+	}
 }
 
 const pauseGame = () => {
