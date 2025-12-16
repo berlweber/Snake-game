@@ -26,24 +26,29 @@ h1, header {
 }
 
 #game-field {
-    width: 90vw;/*change to vw and take away the sttings of body html...*/
+    width: 690px;/*change to vw and take away the sttings of body html...*/
     /*aspect-ratio: 4/1; to maybe add for responsive design*/
-    height: 90%;
+    height: 531px;
     border: 5px solid gray;
     margin-top: 20px;
-    display: grid;
-    /*grid-template-columns: repeat(auto-fill, 10px);*/
-    grid-template-rows: repeat(auto-fill, 10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
 }
 
-#snake {
+#game-field div {
+  border: 1px solid lightgrey;
+  /*flex-grow: 1;*/
+  height: 10px;
+  width: 10px;
+}
+
+.snake {
     background-color: red;
-    grid-row: 13 / span 3;/*will have to change starting position for different screens*/
-    grid-column: span 7 / 17;
 }
 
-#food {
+.food {
     background-color: green;
-    grid-column: 31 / span 3;
-    grid-row: 7 / span 3;
 }
