@@ -7,7 +7,8 @@ const snake = [];
 /*---------- Variables (state) ---------*/
 let playing;
 let score;
-let timerId;
+let intervalId;
+let direction;
 
 /*----- Cached Element References  -----*/
 const startStpBtn = document.querySelector('#strt-stp');
@@ -49,7 +50,6 @@ const setGameField = () => {
     //gameFieldEl.style.width = `${gameField.adjustedWidth}`; need to update width to round grid tightly
     //gameFieldEl.style.hight = `${gameField.adjustedWidth}`; need to update width to round grid tightly
 }*/
-setGameField();//to remove! just for testing
 
 const setSnake = () => {
 	snake.push(0, 1, 2);
@@ -58,8 +58,6 @@ const setSnake = () => {
 
 	});
 }
-
-setSnake()
 
 const createMsg = () => {
 
@@ -80,6 +78,23 @@ init();
 const adjustToWindow = () =>{
     setGameField();
 };
+
+const startGame = () => {
+	intervalId ??= setInterval(activeGame, 200);
+}
+
+const activeGame = () => {
+	direction = 'right';
+	if (direction === 'right') {
+
+	} else if (direction === 'up') {
+		
+	} else if (direction === 'left') {
+		
+	} else {
+
+	}
+}
 /*----------- Event Listeners ----------*/
 
 window.addEventListener("resize", adjustToWindow);
