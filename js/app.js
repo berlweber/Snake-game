@@ -2,6 +2,7 @@
 //msg cost here
 const highScore = [];//for level-up
 const gameField = {};
+const snake = [];
 
 /*---------- Variables (state) ---------*/
 let playing;
@@ -13,9 +14,7 @@ const startStpBtn = document.querySelector('#strt-stp');
 const resetBtn = document.querySelector('#reset');
 const gameFieldEl = document.querySelector('#game-field');
 const gameFieldCells = gameFieldEl.children;
-const snakeEl = document.querySelector('#snake');
 const messageEl = document.querySelector('#message');
-console.log(gameFieldEl);
 
 /*-------------- Functions -------------*/
 /*const createGrid () => {
@@ -31,11 +30,11 @@ const setGameField = () => {
     gameField.rowsAmount = Math.floor(gameField.hight / gameField.columnAndRowWidth);
 		gameField.cellsAmount = gameField.columnsAmount * gameField.rowsAmount;
 		gameField.cells = [];
-		if (gameFieldCells.length > 0){
+		/*if (gameFieldCells.length > 0){
 			gameFieldCells.array.forEach(element => {
 				element.remove();
 			});
-		}
+		}*/
 		for (let i = 0; i < gameField.cellsAmount; i++){
 			const cell = document.createElement('div');
 			gameField.cells.push(cell);
@@ -43,15 +42,24 @@ const setGameField = () => {
 		};
 		//console.log(gameFieldCells);
 }
-//console.log(gameField.hight);
+
 /*const renderGameField = () => {
     gameFieldEl.style.gridTemplateColumns = `repeat(${gameField.columnsAmount}, ${gameField.columnAndRowWidth}px)`;
     gameFieldEl.style.gridTemplateRows = `repeat(${gameField.rowsAmount}, ${gameField.columnAndRowWidth}px)`;
     //gameFieldEl.style.width = `${gameField.adjustedWidth}`; need to update width to round grid tightly
     //gameFieldEl.style.hight = `${gameField.adjustedWidth}`; need to update width to round grid tightly
 }*/
+setGameField();//to remove! just for testing
 
+const setSnake = () => {
+	snake.push(0, 1, 2);
+	snake.forEach((element, i) => {
+		gameField.cells[i + (gameField.columnsAmount * 10) + 10].classList.add('snake');
 
+	});
+}
+
+setSnake()
 
 const createMsg = () => {
 
@@ -63,6 +71,7 @@ const render = () => {
 
 const init = () => {
     setGameField();
+		setSnake()
     render();
 };
 
