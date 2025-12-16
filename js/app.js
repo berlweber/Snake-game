@@ -79,6 +79,10 @@ const adjustToWindow = () =>{
     setGameField();
 };
 
+const startStopHandler = () => {
+	playing = playing ? false : true;
+	console.log(playing);
+}
 const startGame = () => {
 	intervalId ??= setInterval(activeGame, 200);
 }
@@ -103,3 +107,4 @@ const pauseGame = () => {
 /*----------- Event Listeners ----------*/
 
 window.addEventListener("resize", adjustToWindow);
+startStpBtn.addEventListener('click', startStopHandler);
