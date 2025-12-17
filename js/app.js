@@ -10,6 +10,7 @@ let score;
 let intervalId;
 let direction;
 let speed;
+let food;
 
 /*----- Cached Element References  -----*/
 const startStpBtn = document.querySelector('#strt-stp');
@@ -80,7 +81,7 @@ const init = () => {
 
 init();
 console.log(snake);
-console.log(gameField.columnsAmount);
+console.log(gameField.cells.length);
 const adjustToWindow = () =>{
     setGameField();
 };
@@ -89,8 +90,10 @@ const startStopHandler = () => {
 	playing = playing ? false : true;
 	playing ? startGame() : pauseGame();
 }
+
 const startGame = () => {
 	intervalId ??= setInterval(activeGame, speed);
+	food ? true : placeFood();
 }
 
 const setDirection = (event) => {
@@ -106,6 +109,14 @@ const setDirection = (event) => {
 		}
 	}
 }
+
+const placeFood = () => {
+	let randomCell = Math.floor(Math.random() * gameField.cells.length);
+	gameField.cells[randomCell].classList.add('food');
+	food = true;
+}
+
+
 
 const activeGame = () => {
 	let head = snake[snake.length - 1];

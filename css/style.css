@@ -45,10 +45,10 @@ h1, header {
   width: 10px;
 }
 
-.snake {
-    background-color: red;
-}
-
 .food {
     background-color: green;
+}
+
+.snake {
+    background-color: red;
 }
