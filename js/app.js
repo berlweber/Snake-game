@@ -56,7 +56,7 @@ const setGameField = () => {
 
 const setSnake = () => {
 	direction = 'right';
-	speed = 200;
+	speed = 100;
 	snake.push(0, 1, 2);
 	snake.forEach((element, i) => {
 		gameField.cells[i + (gameField.columnsAmount * 10) + 10].classList.add('snake');
@@ -160,7 +160,11 @@ const ateFood = () => {
 	score += 10;
 	gameField.cells[randomCell].classList.remove('food');
 	placeFood();
-	console.log(score);
+	speed -= (speed / 20);
+	pauseGame();
+	startGame();
+	
+	console.log(speed)
 }
 
 
