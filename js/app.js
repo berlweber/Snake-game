@@ -61,7 +61,6 @@ const setSnake = () => {
 	snake.forEach((element, i) => {
 		gameField.cells[i + (gameField.columnsAmount * 10) + 10].classList.add('snake');
 		snake[i] = i + (gameField.columnsAmount * 10) + 10;
-
 	});
 }
 
@@ -74,15 +73,14 @@ const render = () => {
 };
 
 const init = () => {
-	
+	score = 0;
     setGameField();
 	setSnake();
     render();
 };
 
 init();
-console.log(snake);
-console.log(gameField.cells.length);
+
 const adjustToWindow = () =>{
     setGameField();
 };
@@ -150,6 +148,7 @@ const activeGame = () => {
 		};
 		snake[snake.length - 1] -= 1;
 	}
+	if (gameField.cells[snake[snake.length -1]].classList.contains("food")) ateFood();//maybe move it in a seperate snake hits function
 }
 
 const pauseGame = () => {
@@ -161,6 +160,7 @@ const ateFood = () => {
 	score += 10;
 	gameField.cells[randomCell].classList.remove('food');
 	placeFood();
+	console.log(score);
 }
 
 
