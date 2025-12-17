@@ -76,6 +76,7 @@ const init = () => {
 
 init();
 console.log(snake);
+console.log(gameField.columnsAmount);
 const adjustToWindow = () =>{
     setGameField();
 };
@@ -89,16 +90,22 @@ const startGame = () => {
 }
 
 const activeGame = () => {
-	direction = 'right';
+	direction = 'up';
+	let head = snake[snake.length - 1];
 	if (direction === 'right') {
-		gameField.cells[snake[snake.length - 1] + 1].classList.add('snake');
+		gameField.cells[head + 1].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
 		snake.forEach((el, i) => {
 		snake[i] += 1;
-	});
-	console.log(snake);
+		});
 	} else if (direction === 'up') {
-		
+		gameField.cells[head - gameField.columnsAmount].classList.add('snake');
+		gameField.cells[snake[0]].classList.remove('snake');
+		for (let i = 0; i < snake.length - 1; i++){
+			snake[i] = snake[i + 1];
+		};
+		snake[snake.length - 1] -= gameField.columnsAmount;
+		console.log(snake);
 	} else if (direction === 'left') {
 		
 	} else {
