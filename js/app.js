@@ -90,14 +90,15 @@ const startGame = () => {
 }
 
 const activeGame = () => {
-	direction = 'up';
+	direction = 'right';
 	let head = snake[snake.length - 1];
 	if (direction === 'right') {
 		gameField.cells[head + 1].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
-		snake.forEach((el, i) => {
-		snake[i] += 1;
-		});
+		for (let i = 0; i < snake.length - 1; i++){
+			snake[i] = snake[i + 1];
+		};
+		snake[snake.length - 1] += 1;
 	} else if (direction === 'up') {
 		gameField.cells[head - gameField.columnsAmount].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
