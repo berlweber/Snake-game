@@ -69,8 +69,9 @@ const render = () => {
 };
 
 const init = () => {
+	direction = 'right';
     setGameField();
-		setSnake()
+	setSnake();
     render();
 };
 
@@ -89,8 +90,21 @@ const startGame = () => {
 	intervalId ??= setInterval(activeGame, 200);
 }
 
+const setDirection = (event) => {
+	if (playing){
+		if (event.key === 'ArrowUp'){
+			direction = 'up';
+		} else if (event.key === 'ArrowDown'){
+			direction = 'down';
+		} else if (event.key === 'ArrowRight'){
+			direction = 'right';
+		} else if (event.key == 'ArrowLeft'){
+			direction = 'left';
+		}
+	}
+}
+
 const activeGame = () => {
-	direction = 'down';
 	let head = snake[snake.length - 1];
 	if (direction === 'right') {
 		gameField.cells[head + 1].classList.add('snake');
@@ -133,3 +147,4 @@ const pauseGame = () => {
 
 window.addEventListener("resize", adjustToWindow);
 startStpBtn.addEventListener('click', startStopHandler);
+document.body.addEventListener('keydown', setDirection);
