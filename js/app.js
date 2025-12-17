@@ -92,7 +92,7 @@ const startStopHandler = () => {
 
 const startGame = () => {
 	intervalId ??= setInterval(activeGame, speed);
-	food ? true : placeFood();
+	if (!food) placeFood();
 }
 
 const setDirection = (event) => {
@@ -163,7 +163,7 @@ const ateFood = () => {
 	speed -= (speed / 20);
 	pauseGame();
 	startGame();
-	
+	snake.unshift(snake[0]);
 	console.log(speed)
 }
 
