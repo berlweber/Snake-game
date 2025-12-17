@@ -9,6 +9,7 @@ let playing;
 let score;
 let intervalId;
 let direction;
+let speed;
 
 /*----- Cached Element References  -----*/
 const startStpBtn = document.querySelector('#strt-stp');
@@ -52,6 +53,8 @@ const setGameField = () => {
 }*/
 
 const setSnake = () => {
+	direction = 'right';
+	speed = 200;
 	snake.push(0, 1, 2);
 	snake.forEach((element, i) => {
 		gameField.cells[i + (gameField.columnsAmount * 10) + 10].classList.add('snake');
@@ -69,7 +72,7 @@ const render = () => {
 };
 
 const init = () => {
-	direction = 'right';
+	
     setGameField();
 	setSnake();
     render();
@@ -87,18 +90,18 @@ const startStopHandler = () => {
 	playing ? startGame() : pauseGame();
 }
 const startGame = () => {
-	intervalId ??= setInterval(activeGame, 200);
+	intervalId ??= setInterval(activeGame, speed);
 }
 
 const setDirection = (event) => {
 	if (playing){
-		if (event.key === 'ArrowUp'){
+		if (event.key === 'ArrowUp' && direction !== 'down'){
 			direction = 'up';
-		} else if (event.key === 'ArrowDown'){
+		} else if (event.key === 'ArrowDown' && direction !== 'up'){
 			direction = 'down';
-		} else if (event.key === 'ArrowRight'){
+		} else if (event.key === 'ArrowRight' && direction !== 'left'){
 			direction = 'right';
-		} else if (event.key == 'ArrowLeft'){
+		} else if (event.key == 'ArrowLeft' && direction !== 'right'){
 			direction = 'left';
 		}
 	}
@@ -120,7 +123,6 @@ const activeGame = () => {
 			snake[i] = snake[i + 1];
 		};
 		snake[snake.length - 1] -= gameField.columnsAmount;
-		console.log(snake);
 	} else if (direction === 'down') {
 		gameField.cells[head + gameField.columnsAmount].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
@@ -128,7 +130,6 @@ const activeGame = () => {
 			snake[i] = snake[i + 1];
 		};
 		snake[snake.length - 1] += gameField.columnsAmount;
-		console.log(snake);
 	} else {
 		gameField.cells[head - 1].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
