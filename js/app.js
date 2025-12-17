@@ -10,6 +10,7 @@ let score;
 let intervalId;
 let direction;
 let speed;
+let randomCell;
 let food;
 
 /*----- Cached Element References  -----*/
@@ -111,7 +112,7 @@ const setDirection = (event) => {
 }
 
 const placeFood = () => {
-	let randomCell = Math.floor(Math.random() * gameField.cells.length);
+	randomCell = Math.floor(Math.random() * gameField.cells.length);
 	gameField.cells[randomCell].classList.add('food');
 	food = true;
 }
@@ -155,6 +156,14 @@ const pauseGame = () => {
 	clearInterval(intervalId);
 	intervalId = null;
 }
+
+const ateFood = () => {
+	score += 10;
+	gameField.cells[randomCell].classList.remove('food');
+	placeFood();
+}
+
+
 /*----------- Event Listeners ----------*/
 
 window.addEventListener("resize", adjustToWindow);
