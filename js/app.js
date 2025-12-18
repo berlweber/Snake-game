@@ -74,6 +74,10 @@ const setSnake = () => {
 }
 
 const createMsg = () => {
+	if (!gameOver && !playing ) messageEl.innerHTML = `(Re)Start the game by pressing the start / stop button<br>
+														Navigate the snake with the arrow keys on your keyboard<br>
+														Eat as much as food as you can, without hitting the wall or yourself<br>
+														With each food you eat,, the snake get longer AND moves faster`
 	if (gameOver) messageEl.innerHTML = `You hit the wall or yourself.<br>Your score is: ${score}.<br>Press the restart button to start again.`
 }
 
@@ -82,6 +86,7 @@ const init = () => {
 	gameOver = false;
 	pauseGame();
 	setSnake();
+	createMsg();
 };
 
 
