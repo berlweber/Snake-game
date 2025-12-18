@@ -120,7 +120,13 @@ const setDirection = (event) => {
 }
 
 const placeFood = () => {
-	randomCell = Math.floor(Math.random() * gameField.cells.length);
+	let max = 0;
+	do {
+		randomCell = Math.floor(Math.random() * gameField.cells.length);
+		max++;
+		console.log(max);
+	}
+	while (gameField.cells[randomCell].classList.contains('snake') || max > 99);
 	gameField.cells[randomCell].classList.add('food');
 	food = true;
 }
