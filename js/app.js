@@ -32,21 +32,27 @@ const setGameField = () => {
     gameField.adjustedHeight = gameField.hight - (gameField.hight % gameField.columnAndRowWidth);
     gameField.columnsAmount = Math.floor(gameField.width / gameField.columnAndRowWidth);//to be removed
     gameField.rowsAmount = Math.floor(gameField.hight / gameField.columnAndRowWidth);
-		gameField.cellsAmount = gameField.columnsAmount * gameField.rowsAmount;
-		gameField.cells = [];
-		/*if (gameFieldCells.length > 0){
-			gameFieldCells.array.forEach(element => {
-				element.remove();
-			});
-		}*/
-		for (let i = 0; i < gameField.cellsAmount; i++){
-			const cell = document.createElement('div');
-			gameField.cells.push(cell);
-			gameFieldEl.appendChild(cell);
-		};
-		//console.log(gameFieldCells);
+	gameField.cellsAmount = gameField.columnsAmount * gameField.rowsAmount;
+	
+	/*if (gameField.Cells.length > 0){
+		for (let i = 0; i > gameField.Cells.length; i++){
+		gameFieldEl.firstChild.remove();
+		}
+		gameField.cells.length = 0;
+		console.log('this is the cells array:',gameField.Cells);
+		console.log('this is the gameField el:', gameFieldEl);
+	}*/
+	gameField.cells = [];
+	for (let i = 0; i < gameField.cellsAmount; i++){
+		const cell = document.createElement('div');
+		gameField.cells.push(cell);
+		gameFieldEl.appendChild(cell);
+	};
+	//gameField.cells.length = 0;
+	//
 }
 
+setGameField();
 /*const renderGameField = () => {
     gameFieldEl.style.gridTemplateColumns = `repeat(${gameField.columnsAmount}, ${gameField.columnAndRowWidth}px)`;
     gameFieldEl.style.gridTemplateRows = `repeat(${gameField.rowsAmount}, ${gameField.columnAndRowWidth}px)`;
@@ -56,7 +62,9 @@ const setGameField = () => {
 
 const setSnake = () => {
 	direction = 'right';
-	speed = 100;
+	speed = 150;
+	snake.forEach((el) => gameField.cells[el].classList.remove('snake'));
+	snake.length = 0;
 	snake.push(0, 1, 2);
 	snake.forEach((element, i) => {
 		gameField.cells[i + (gameField.columnsAmount * 10) + 10].classList.add('snake');
@@ -74,14 +82,14 @@ const render = () => {
 
 const init = () => {
 	score = 0;
-    setGameField();
+	pauseGame();
 	setSnake();
     render();
 };
 
-init();
 
-const adjustToWindow = () =>{
+
+const adjustToWindow = () => {
     setGameField();
 };
 
@@ -160,16 +168,17 @@ const ateFood = () => {
 	score += 10;
 	gameField.cells[randomCell].classList.remove('food');
 	placeFood();
-	speed -= (speed / 20);
+	speed -= 1;
 	pauseGame();
 	startGame();
 	snake.unshift(snake[0]);
 	console.log(speed)
 }
 
-
+init();
 /*----------- Event Listeners ----------*/
 
-window.addEventListener("resize", adjustToWindow);
+//window.addEventListener("resize", adjustToWindow);
 startStpBtn.addEventListener('click', startStopHandler);
+resetBtn.addEventListener('click', init);
 document.body.addEventListener('keydown', setDirection);
