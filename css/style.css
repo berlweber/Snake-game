@@ -1,7 +1,7 @@
 html, body{
     width: 100%;
     height: 95%;
-   
+    border: red solid 1px;
     /*max-width: 767px;
     margin: 0 auto;*/
 }
@@ -12,6 +12,7 @@ html, body{
 
 body {
     width: 90%;
+    margin: 0 auto;
 }
 
 h1, header {
@@ -20,14 +21,15 @@ h1, header {
 }
 
 main {
-    margin: 0 auto;
+    border: red solid 1px;
+     
 }
 
 .buttons {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     width: 690px;
 }
@@ -37,7 +39,7 @@ main {
     /*aspect-ratio: 4/1; to maybe add for responsive design*/
     height: 450px;
     border: 5px solid gray;
-    margin-top: 20px;
+    margin: 20px auto 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
