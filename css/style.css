@@ -1,7 +1,7 @@
 html, body{
     width: 100%;
     height: 95%;
-    border: red solid 1px;
+    
     /*max-width: 767px;
     margin: 0 auto;*/
 }
@@ -21,8 +21,8 @@ h1, header {
 }
 
 main {
-    position: relative;
-    border: red solid 1px;
+    
+    
      
 }
 
@@ -30,17 +30,22 @@ main {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
-    margin: 0 auto;
+    margin-top: 0;
+    margin-right: 50%;
+    margin-left: 15%;
     padding: 0;
-    width: 690px;
+    
+}
+
+.flex-container {
+    display: flex;
+    border: red solid 1px;
 }
 
 #message {
-    text-align: center;
-    position: absolute;
-    right: 3%;
-    top: 20px;
-    font-size: 1.5em;
+    text-align: left;
+    line-height: 1.5;
+    font-size: 1.2em;
 }
 
 #game-field {
@@ -49,7 +54,7 @@ main {
     height: 450px;
     border: 5px solid gray;
     margin: 20px auto 0;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
