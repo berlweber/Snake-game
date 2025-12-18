@@ -21,6 +21,7 @@ h1, header {
 }
 
 main {
+    position: relative;
     border: red solid 1px;
      
 }
@@ -32,6 +33,14 @@ main {
     margin: 0 auto;
     padding: 0;
     width: 690px;
+}
+
+#message {
+    text-align: center;
+    position: absolute;
+    right: 3%;
+    top: 20px;
+    font-size: 1.5em;
 }
 
 #game-field {
