@@ -1,8 +1,9 @@
-html, body, main {
+html, body{
     width: 100%;
     height: 95%;
-    max-width: 767px;
-    margin: 0 auto;
+   
+    /*max-width: 767px;
+    margin: 0 auto;*/
 }
 
 * {
@@ -11,13 +12,15 @@ html, body, main {
 
 body {
     width: 90%;
-    margin: 0 auto;
-    
 }
 
 h1, header {
     margin: 20px auto;
     text-align: center;
+}
+
+main {
+    margin: 0 auto;
 }
 
 .buttons {
@@ -26,12 +29,13 @@ h1, header {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    width: 690px;
 }
 
 #game-field {
     width: 690px;/*change to vw and take away the sttings of body html...*/
     /*aspect-ratio: 4/1; to maybe add for responsive design*/
-    height: 531px;
+    height: 450px;
     border: 5px solid gray;
     margin-top: 20px;
     display: flex;
