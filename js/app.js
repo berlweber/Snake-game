@@ -12,6 +12,7 @@ let direction;
 let speed;
 let randomCell;
 let food;
+let gameOver;
 
 /*----- Cached Element References  -----*/
 const startStpBtn = document.querySelector('#strt-stp');
@@ -30,7 +31,7 @@ const setGameField = () => {
     gameField.columnAndRowWidth = 10;
     gameField.adjustedWidth = gameField.width - (gameField.width % gameField.columnAndRowWidth);
     gameField.adjustedHeight = gameField.hight - (gameField.hight % gameField.columnAndRowWidth);
-    gameField.columnsAmount = Math.floor(gameField.width / gameField.columnAndRowWidth);//to be removed
+    gameField.columnsAmount = Math.floor(gameField.width / gameField.columnAndRowWidth);
     gameField.rowsAmount = Math.floor(gameField.hight / gameField.columnAndRowWidth);
 	gameField.cellsAmount = gameField.columnsAmount * gameField.rowsAmount;
 	
@@ -82,6 +83,7 @@ const render = () => {
 
 const init = () => {
 	score = 0;
+	gameOver = false;
 	pauseGame();
 	setSnake();
     render();
@@ -95,7 +97,7 @@ const adjustToWindow = () => {
 
 const startStopHandler = () => {
 	playing = playing ? false : true;
-	playing ? startGame() : pauseGame();
+	playing && !gameOver ? startGame() : pauseGame();
 }
 
 const startGame = () => {
@@ -127,8 +129,9 @@ const placeFood = () => {
 
 const activeGame = () => {
 	let head = snake[snake.length - 1];
-		gameOver();
+		gameOverHandler();
 	if (direction === 'right') {
+		if (gameOver) return;
 		gameField.cells[head + 1].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
 		for (let i = 0; i < snake.length - 1; i++){
@@ -136,6 +139,8 @@ const activeGame = () => {
 		};
 		snake[snake.length - 1] += 1;
 	} else if (direction === 'up') {
+		if (gameOver) return;
+		console.log(snake[snake.length - 1] - gameField.columnsAmount < 0);
 		gameField.cells[head - gameField.columnsAmount].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
 		for (let i = 0; i < snake.length - 1; i++){
@@ -177,8 +182,10 @@ const ateFood = () => {
 	console.log(speed);
 }
 
-const gameOver = () => {
-	if (direction === 'right' && (snake[snake.length - 1] + 2) % gameField.columnsAmount === 0) {
+const gameOverHandler = () => {
+	if ((direction === 'right' && (snake[snake.length - 1] + 1) % gameField.columnsAmount === 0) ||
+		(direction === 'up' && (snake[snake.length - 1] - gameField.columnsAmount < 0))) {
+		gameOver = true;
 		pauseGame();
 	}
 }
