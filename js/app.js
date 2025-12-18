@@ -140,7 +140,6 @@ const activeGame = () => {
 		snake[snake.length - 1] += 1;
 	} else if (direction === 'up') {
 		if (gameOver) return;
-		console.log(snake[snake.length - 1] - gameField.columnsAmount < 0);
 		gameField.cells[head - gameField.columnsAmount].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
 		for (let i = 0; i < snake.length - 1; i++){
@@ -148,6 +147,7 @@ const activeGame = () => {
 		};
 		snake[snake.length - 1] -= gameField.columnsAmount;
 	} else if (direction === 'down') {
+		if (gameOver) return;
 		gameField.cells[head + gameField.columnsAmount].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
 		for (let i = 0; i < snake.length - 1; i++){
@@ -155,6 +155,7 @@ const activeGame = () => {
 		};
 		snake[snake.length - 1] += gameField.columnsAmount;
 	} else {
+		if (gameOver) return;
 		gameField.cells[head - 1].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
 		for (let i = 0; i < snake.length - 1; i++){
@@ -183,8 +184,14 @@ const ateFood = () => {
 }
 
 const gameOverHandler = () => {
-	if ((direction === 'right' && (snake[snake.length - 1] + 1) % gameField.columnsAmount === 0) ||
-		(direction === 'up' && (snake[snake.length - 1] - gameField.columnsAmount < 0))) {
+	if ((direction === 'right' && ((snake[snake.length - 1] + 1) % gameField.columnsAmount === 0  || 
+			gameField.cells[snake[snake.length - 1] + 1].classList.contains('snake'))) ||
+		(direction === 'up' && ((snake[snake.length - 1] - gameField.columnsAmount < 0) ||
+			gameField.cells[snake[snake.length - 1] - gameField.columnsAmount].classList.contains('snake'))) ||
+		(direction === 'left' && ((snake[snake.length - 1] - 1) % gameField.columnsAmount === (gameField.columnsAmount - 1) ||
+			gameField.cells[snake[snake.length - 1] - 1].classList.contains('snake'))) ||
+		(direction === 'down' && ((snake[snake.length - 1] + gameField.columnsAmount > gameField.cellsAmount) ||
+			gameField.cells[snake[snake.length - 1] + gameField.columnsAmount].classList.contains('snake')))) {
 		gameOver = true;
 		pauseGame();
 	}
