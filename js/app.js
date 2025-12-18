@@ -74,19 +74,14 @@ const setSnake = () => {
 }
 
 const createMsg = () => {
-
+	if (gameOver) messageEl.innerHTML = `You hit the wall or yourself.<br>Your score is: ${score}.<br>Press the restart button to start again.`
 }
-
-const render = () => {
-    
-};
 
 const init = () => {
 	score = 0;
 	gameOver = false;
 	pauseGame();
 	setSnake();
-    render();
 };
 
 
@@ -200,6 +195,7 @@ const gameOverHandler = () => {
 			gameField.cells[snake[snake.length - 1] + gameField.columnsAmount].classList.contains('snake')))) {
 		gameOver = true;
 		pauseGame();
+		createMsg();
 	}
 }
 //gameField.cells[(head + 1) % gameField.columnsAmount === 1].classList.add('snake')
