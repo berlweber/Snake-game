@@ -127,6 +127,7 @@ const placeFood = () => {
 
 const activeGame = () => {
 	let head = snake[snake.length - 1];
+		gameOver();
 	if (direction === 'right') {
 		gameField.cells[head + 1].classList.add('snake');
 		gameField.cells[snake[0]].classList.remove('snake');
@@ -157,6 +158,7 @@ const activeGame = () => {
 		snake[snake.length - 1] -= 1;
 	}
 	if (gameField.cells[snake[snake.length -1]].classList.contains("food")) ateFood();//maybe move it in a seperate snake hits function
+
 }
 
 const pauseGame = () => {
@@ -172,9 +174,18 @@ const ateFood = () => {
 	pauseGame();
 	startGame();
 	snake.unshift(snake[0]);
-	console.log(speed)
+	console.log(speed);
 }
 
+const gameOver = () => {
+	if (direction === 'right' && (snake[snake.length - 1] + 2) % gameField.columnsAmount === 0) {
+		pauseGame();
+	}
+}
+//gameField.cells[(head + 1) % gameField.columnsAmount === 1].classList.add('snake')
+/*gameField.cells.forEach((cell, i) => {
+	if (i % gameField.columnsAmount === 0) cell.classList.add('snake');
+});*/
 init();
 /*----------- Event Listeners ----------*/
 
