@@ -78,7 +78,7 @@ const createMsg = () => {
 	if (!gameOver && !playing ) messageEl.innerHTML = `<b>start: </b>(Re)Start and pause the game by pressing the start / pause button.<br>
 														<b>Navigation: </b>Navigate the snake with the arrow keys on your keyboard.<br>
 														<b>Goal: </b>Eat as much as food as you can, without hitting the wall or yourself.<br>
-														<b>whatch out: </b>With each food you eat, the snake gets longer AND moves faster!`
+														<b>watch out: </b>With each food you eat, the snake gets longer AND moves faster!`
 	if (gameOver) messageEl.innerHTML = `<b>Game Over: </b>You hit the wall or yourself.<br><b>Your score is: </b>${score}.<br><b>To start again: </b>Press the restart button .`
 }
 
