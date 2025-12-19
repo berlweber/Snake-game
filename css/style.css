@@ -5,6 +5,7 @@ html, body{
 
 * {
     box-sizing: border-box;
+    border: solid red 1px;
 }
 
 body {
@@ -19,8 +20,12 @@ h1, header {
 
 .buttons {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: start;
     list-style-type: none;
+    position: absolute;
+    left: 100px;
+    /*top: 0px;*/
     /*margin-top: 0;
     margin-right: 50%;
     margin-left: 0;*/
@@ -30,6 +35,7 @@ h1, header {
 #reset, #strt-stp{
     padding: 20px;
     border-radius: 5px;
+    width: 100%;
 }
 
 .flex-container {
