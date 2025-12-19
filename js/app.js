@@ -9,6 +9,7 @@ let playing;
 let score;
 let intervalId;
 let direction;
+let lastMove;
 let speed;
 let randomCell;
 let food;
@@ -74,16 +75,19 @@ const setSnake = () => {
 }
 
 const createMsg = () => {
-	if (!gameOver && !playing ) messageEl.innerHTML = `(Re)Start the game by pressing the start / stop button<br>
-														Navigate the snake with the arrow keys on your keyboard<br>
-														Eat as much as food as you can, without hitting the wall or yourself<br>
-														With each food you eat,, the snake get longer AND moves faster`
+	if (!gameOver && !playing ) messageEl.innerHTML = `(Re)Start the game by pressing the start / stop button.<br>
+														Navigate the snake with the arrow keys on your keyboard.<br>
+														Eat as much as food as you can, without hitting the wall or yourself.<br>
+														With each food you eat, the snake get longer AND moves faster.`
 	if (gameOver) messageEl.innerHTML = `You hit the wall or yourself.<br>Your score is: ${score}.<br>Press the restart button to start again.`
 }
 
 const init = () => {
 	score = 0;
 	gameOver = false;
+	if (food) {gameField.cells[randomCell].classList.remove('food');
+	food = false}
+	playing = false;
 	pauseGame();
 	setSnake();
 	createMsg();
@@ -107,13 +111,13 @@ const startGame = () => {
 
 const setDirection = (event) => {
 	if (playing){
-		if (event.key === 'ArrowUp' && direction !== 'down'){
+		if (event.key === 'ArrowUp' && lastMove !== 'down'){
 			direction = 'up';
-		} else if (event.key === 'ArrowDown' && direction !== 'up'){
+		} else if (event.key === 'ArrowDown' && lastMove !== 'up'){
 			direction = 'down';
-		} else if (event.key === 'ArrowRight' && direction !== 'left'){
+		} else if (event.key === 'ArrowRight' && lastMove !== 'left'){
 			direction = 'right';
-		} else if (event.key == 'ArrowLeft' && direction !== 'right'){
+		} else if (event.key == 'ArrowLeft' && lastMove !== 'right'){
 			direction = 'left';
 		}
 	}
@@ -124,9 +128,8 @@ const placeFood = () => {
 	do {
 		randomCell = Math.floor(Math.random() * gameField.cells.length);
 		max++;
-		console.log(max);
 	}
-	while (gameField.cells[randomCell].classList.contains('snake') || max > 99);
+	while (gameField.cells[randomCell].classList.contains('snake') && max < 99);
 	gameField.cells[randomCell].classList.add('food');
 	food = true;
 }
@@ -144,6 +147,7 @@ const activeGame = () => {
 			snake[i] = snake[i + 1];
 		};
 		snake[snake.length - 1] += 1;
+		lastMove = 'right';
 	} else if (direction === 'up') {
 		if (gameOver) return;
 		gameField.cells[head - gameField.columnsAmount].classList.add('snake');
@@ -152,6 +156,7 @@ const activeGame = () => {
 			snake[i] = snake[i + 1];
 		};
 		snake[snake.length - 1] -= gameField.columnsAmount;
+		lastMove = 'up';
 	} else if (direction === 'down') {
 		if (gameOver) return;
 		gameField.cells[head + gameField.columnsAmount].classList.add('snake');
@@ -160,6 +165,7 @@ const activeGame = () => {
 			snake[i] = snake[i + 1];
 		};
 		snake[snake.length - 1] += gameField.columnsAmount;
+		lastMove = 'down';
 	} else {
 		if (gameOver) return;
 		gameField.cells[head - 1].classList.add('snake');
@@ -168,6 +174,7 @@ const activeGame = () => {
 			snake[i] = snake[i + 1];
 		};
 		snake[snake.length - 1] -= 1;
+		lastMove = 'left';
 	}
 	if (gameField.cells[snake[snake.length -1]].classList.contains("food")) ateFood();//maybe move it in a seperate snake hits function
 
@@ -199,6 +206,7 @@ const gameOverHandler = () => {
 		(direction === 'down' && ((snake[snake.length - 1] + gameField.columnsAmount > gameField.cellsAmount) ||
 			gameField.cells[snake[snake.length - 1] + gameField.columnsAmount].classList.contains('snake')))) {
 		gameOver = true;
+		playing = false;
 		pauseGame();
 		createMsg();
 	}
