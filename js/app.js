@@ -1,6 +1,4 @@
 /*-------------- Constants -------------*/
-//msg cost here
-const highScore = [];//for level-up
 const gameField = {};
 const snake = [];
 
@@ -23,9 +21,7 @@ const gameFieldCells = gameFieldEl.children;
 const messageEl = document.querySelector('#message');
 
 /*-------------- Functions -------------*/
-/*const createGrid () => {
-	
-}*/
+
 const setGameField = () => {
     gameField.width = gameFieldEl.clientWidth;
     gameField.hight = gameFieldEl.clientHeight;
@@ -35,32 +31,15 @@ const setGameField = () => {
     gameField.columnsAmount = Math.floor(gameField.width / gameField.columnAndRowWidth);
     gameField.rowsAmount = Math.floor(gameField.hight / gameField.columnAndRowWidth);
 	gameField.cellsAmount = gameField.columnsAmount * gameField.rowsAmount;
-	
-	/*if (gameField.Cells.length > 0){
-		for (let i = 0; i > gameField.Cells.length; i++){
-		gameFieldEl.firstChild.remove();
-		}
-		gameField.cells.length = 0;
-		console.log('this is the cells array:',gameField.Cells);
-		console.log('this is the gameField el:', gameFieldEl);
-	}*/
 	gameField.cells = [];
 	for (let i = 0; i < gameField.cellsAmount; i++){
 		const cell = document.createElement('div');
 		gameField.cells.push(cell);
 		gameFieldEl.appendChild(cell);
 	};
-	//gameField.cells.length = 0;
-	//
 }
 
 setGameField();
-/*const renderGameField = () => {
-    gameFieldEl.style.gridTemplateColumns = `repeat(${gameField.columnsAmount}, ${gameField.columnAndRowWidth}px)`;
-    gameFieldEl.style.gridTemplateRows = `repeat(${gameField.rowsAmount}, ${gameField.columnAndRowWidth}px)`;
-    //gameFieldEl.style.width = `${gameField.adjustedWidth}`; need to update width to round grid tightly
-    //gameFieldEl.style.hight = `${gameField.adjustedWidth}`; need to update width to round grid tightly
-}*/
 
 const setSnake = () => {
 	direction = 'right';
@@ -176,7 +155,7 @@ const activeGame = () => {
 		snake[snake.length - 1] -= 1;
 		lastMove = 'left';
 	}
-	if (gameField.cells[snake[snake.length -1]].classList.contains("food")) ateFood();//maybe move it in a seperate snake hits function
+	if (gameField.cells[snake[snake.length -1]].classList.contains("food")) ateFood();
 
 }
 
@@ -193,7 +172,6 @@ const ateFood = () => {
 	pauseGame();
 	startGame();
 	snake.unshift(snake[0]);
-	console.log(speed);
 }
 
 const gameOverHandler = () => {
@@ -211,14 +189,10 @@ const gameOverHandler = () => {
 		createMsg();
 	}
 }
-//gameField.cells[(head + 1) % gameField.columnsAmount === 1].classList.add('snake')
-/*gameField.cells.forEach((cell, i) => {
-	if (i % gameField.columnsAmount === 0) cell.classList.add('snake');
-});*/
+
 init();
 /*----------- Event Listeners ----------*/
 
-//window.addEventListener("resize", adjustToWindow);
 startStpBtn.addEventListener('click', startStopHandler);
 resetBtn.addEventListener('click', init);
 document.body.addEventListener('keydown', setDirection);

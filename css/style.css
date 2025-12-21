@@ -55,8 +55,7 @@ h1, header {
 }
 
 #game-field {
-    width: 690px;/*change to vw and take away the sttings of body html...*/
-    /*aspect-ratio: 4/1; to maybe add for responsive design*/
+    width: 690px;
     height: 450px;
     border: 7px solid black;
     margin: 20px auto 0;
