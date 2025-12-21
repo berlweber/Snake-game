@@ -2,30 +2,30 @@
 A bowser based snake game
 ![screenshot of green snake-field game with red snake](./Snake-game.png?raw=true "")
 
-##How the game works
+## How the game works
 
 The game start's with a small snake on the game field moving on a a slower speed and food placed on random places on the game field. but the snake get bigger and moves faster after each food it eats.
 
-###The goal of the game
+### The goal of the game
 The goal of the game is to eat as much as food possible without hitting the wall or itself.
 
-###Controls
+### Controls
 
 press the start/puase button to start or pause the game. use the arrow key's on your keyboard to navigate the snake to different directions. press the reset button, to restart the game.
 
-##Game history & inventor
+## Game history & inventor
 
 >While Nokia's 1997 version brought Snake to global fame, the game wasn't created by them. It was actually developed by Taneli Armanto, a Nokia engineer, who adapted the idea for mobile phones. His version came pre-installed on the Nokia 6110 — and the rest is history!
 
-##Getting started
+## Getting started
 
 [Click here to visit the deployed game!](https://berlweber.github.io/Snake-game/)
 
-##Technologies used
+## Technologies used
 
 Javascript, HTML, and CSS.
 
-##Next steps
+## Next steps
 
 -   adjustments:
     - change the function-setting, so the snake speed increases faster on every food aten.
